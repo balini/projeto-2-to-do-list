@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,29 +10,29 @@
     <script src="./assets/script.js"></script>
     <title>Lista de coisas a fazer</title>
 </head>
+
 <body>
 
     <main class="container">
         <h1>Lista de coisas a fazer</h1>
 
         <section class="conteudo">
-            <div>
-                <h2>Adicione uma nova tarefa</h2>
-            </div>
 
-            <div>
-                <form class="lista">
-                    <textarea id="getText" placeholder="Digite aqui a sua tarefa"></textarea>
-                    <input id="getClick" type="submit" value="ADD">
-                </form>
-            </div>
-
-            <div>
+            <div class="lista">
+                <textarea id="getText" placeholder="Digite aqui a sua tarefa"></textarea>
+                <input id="getClick" type="submit" value="ADD">
+                
                 <ul id="resultado"></ul>
+            </div>
+
+            <div class="container--btn">
+                <button id="checkAll" class="btn">Marcar todas como feitas</button>
+                <button id="deletedAll" class="btn">Apagar todas</button>
             </div>
 
         </section>
     </main>
-    
+
 </body>
+
 </html>

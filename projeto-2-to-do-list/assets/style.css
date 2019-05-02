@@ -2,12 +2,19 @@ body {
     background: linear-gradient(90deg, rgb(224, 195, 252), rgb(142, 197, 252));
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-
+    box-sizing: border-box;
 }
 
 li {
     list-style: none;
 }
+
+h1 {
+    color: whitesmoke;
+    font-size: 25px;
+}
+
+
 
 .container {
     text-align: center;
@@ -15,28 +22,20 @@ li {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-
-}
-
-h1 {
-    color: white;
-    font-size: 25px;
 }
 
 .conteudo {
-    background-color: white;
+    /* background-color: white; */
     width: 40%;
-}
-
-h2 {
-    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .lista {
     display: flex;
     flex-direction: column;
     width: 500px;
-    margin: 0 auto;
 }
 
 textarea {
@@ -50,6 +49,45 @@ input {
     color: whitesmoke;
 }
 
-.resultado {
+#resultado {
+    display: block;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.resultado--lista {
     display: flex;
+    justify-content: space-between;
+    padding: 3% 5%;
+}
+
+.close {
+    border: 1px solid grey;
+    background-color: grey;
+    color: whitesmoke;
+}
+
+.tarefa--concluida{
+    color: grey;
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.container--btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.btn {
+    background-color: #ba7af8;
+    border: 8px solid #ba7af8;
+    color: whitesmoke;
+    padding: 0;
+    width: 45%;
 }
