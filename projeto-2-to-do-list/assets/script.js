@@ -6,63 +6,100 @@ window.addEventListener('DOMContentLoaded', function () {
     let deletedAll = document.querySelector('#deletedAll');
 
 
-    getClick.addEventListener('click', function () {        
+    //Evento que pega o clique do botão de adicionar tarefas
+    getClick.addEventListener('click', function add() {
 
-        //Adiconando tarefa
 
+        //Adiconando tarefas à lista
         let resultadoLista = document.createElement("li"); //elemento criado 
         resultadoLista.classList = 'resultado--lista';
-        resultado.appendChild(resultadoLista);
 
-        //marcando tarefa como feito
-
+        //Criando o checkbox
         let marcador = document.createElement("input");
         marcador.setAttribute('type', 'checkbox');
         resultadoLista.appendChild(marcador);
         marcador.classList = 'marcador';
 
-        //texto 
-        let texto = document.createElement('span');
+        //Criando tags para colocar as tarefas 
+        const texto = document.createElement('span');
         let getTextValue = getText.value; //valor digitado da tarefa
-        resultadoLista.appendChild(texto);
+        const valorTexto = getTextValue.trim();//elimina todos os espaços
+        texto.classList = 'texto';
         texto.innerHTML += getTextValue; //adiciona o texto digitado no html
 
-        
-        
         //Excluindo tarefas
-
         let fechar = document.createElement('button');// 'x' para excluir tarefa
         fechar.innerHTML = 'x';//adiciona 'x' para o botão
         fechar.classList = 'close';
-        resultadoLista.appendChild(fechar);
 
-        //função excluir tarefas
+        if (valorTexto == "") {
+            resultadoLista.remove();
+            alert("Digite uma tarefa válida!")
+        } else {
+            resultado.appendChild(resultadoLista);
+            resultadoLista.appendChild(texto);
+            resultadoLista.appendChild(fechar);
+
+
+
+        }
+
+        //Evento de excluir tarefas
         fechar.addEventListener('click', function () {
             resultado.removeChild(resultadoLista);
         })
 
-        //função de marcar tarefas
+        //Evento de marcar tarefas
         marcador.addEventListener('click', function () {
-            if(this.checked == true){texto.classList.toggle('tarefa--concluida', true)}
-            else{texto.classList.toggle('tarefa--concluida', false)} 
+            if (this.checked == true) { texto.classList.toggle('tarefa--concluida', true) }
+            else { texto.classList.toggle('tarefa--concluida', false) }
         })
 
-        //excluindo todas as tarefas
+        //Evento de excluir todas as tarefas
         deletedAll.addEventListener('click', function deleted() {
             resultadoLista.remove();
         })
 
+
+
     })
 
-     //marcando todas as tarfeas
-     checkAll.addEventListener('click', function maracarTudo() {
-        let comprimentoMarcador = document.querySelectorAll('.marcador')
-        console.log(comprimentoMarcador);
-        comprimentoMarcador.forEach(element => {
-            element.marcador;
-        //    texto.classList.toggle('tarefa--concluida', true);
-        });
-    })
+    checkAll.addEventListener('click', marcarTudo)
+
+
+    //Função de marcar tudo
+    function marcarTudo() {
+
+        //Evento de marcar todas as tarefas
+        let tarefas = document.querySelectorAll('.resultado--lista');
+        let action = false;
+
+
+        //Marcando todas as checkbox
+        for (var i = 0; i < tarefas.length; i++) {
+            const check = tarefas[i].querySelector('.marcador').checked; //pegar o check dentro do loop
+            if (!check) {
+                action = true;//se não maracado marque
+                break;//para de rodar o laço
+            } else {
+                action = false; //se marcado, desmarque
+            }
+        }
+
+
+        //Marcando todos os textos
+        tarefas.forEach(item => {
+            // element.classList.toggle('tarefa--concluida');
+            item.querySelector('.marcador').checked = action;
+            const texto1 = item.querySelector('span');
+
+
+            if (action) {
+                texto1.classList = 'tarefa--concluida';
+            } else {
+                texto1.classList = '';
+            }
+        })
 
 
 
@@ -70,12 +107,18 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
+        // Esse código element.classList.toggle('tarefa--concluida') equivale a escrever:
+        // if (element.classList == 'tarefa--concluida') {
+        //     element.classList = ''
+        // } else if (element.classList == '') {
+        //     element.classList = 'tarefa--concluida'
+        // }
 
 
 
 
-    
 
 
+    }
 
 });
